@@ -20,7 +20,7 @@ def main():
     app = QGuiApplication(sys.argv)
 
     # Cria ViewModels e Models
-    counter_vm = CounterViewModel()
+    counter_vm = CounterViewModel(message="Clique no botão!")
     task_model = TaskListModel(
         repository=TaskRepository(Path(__file__).parent / "tasks.json")
     )

@@ -1,17 +1,18 @@
 from PySide6.QtCore import Property, Signal
 
 
-def ref(_type: type, name: str):
+def use_ref(_type: type, name: str):
     signal = Signal(_type)
-    private_name = f"_{name}"
 
     def getter(self):
-        return getattr(self, private_name)
+        return getattr(self, f"_{name}")
 
     def setter(self, value):
-        if getattr(self, private_name, None) != value:
-            setattr(self, private_name, value)
-            getattr(self, f"{name}Changed").emit(value)
+        if getattr(self, f"_{name}", None) == value:
+            return
+
+        setattr(self, f"_{name}", value)
+        getattr(self, f"{name}Changed").emit(value)
 
     prop = Property(_type, getter, setter, notify=signal)
     return prop, signal

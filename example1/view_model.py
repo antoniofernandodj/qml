@@ -1,22 +1,16 @@
-from PySide6.QtCore import (
-    Property,
-    QObject,
-    Signal,
-    Slot,
-)
-
-from example1.reactive import ref
+from PySide6.QtCore import QObject, Slot
+from example1.reactive import use_ref
 
 
 class CounterViewModel(QObject):
-    counter, counterChanged = ref(int, "counter")
-    message, messageChanged = ref(str, "message")
+    counter, counterChanged = use_ref(int, "counter")
+    message, messageChanged = use_ref(str, "message")
 
-    def __init__(self):
+    def __init__(self, message: str):
         super().__init__()
         self.counter = 0
-        self.message = "Clique no botão!"
-        self.counterChanged.connect(self._update_message)
+        self.message = message
+        self.counterChanged.connect(self.update_message)
 
     @Slot()
     def increment(self):
@@ -30,7 +24,7 @@ class CounterViewModel(QObject):
     def reset(self):
         self.counter = 0
 
-    def _update_message(self, value: int):
+    def update_message(self, value: int):
         if value == 0:
             self.message = "Comece a contar!"
         elif value < 5:

@@ -45,7 +45,7 @@ class TaskListModel(QAbstractListModel):
         elif role == self.CompletedRole:
             return task.completed
         return None
-    
+
     def roleNames(self):
         return {
             self.TextRole: b"text",
