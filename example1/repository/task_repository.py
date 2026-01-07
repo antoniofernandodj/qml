@@ -5,8 +5,8 @@ Pode ser JSON, SQLite, API REST, etc.
 """
 import json
 from pathlib import Path
-from typing import List, Optional
-from model.task import Task
+from typing import List
+from example1.model.task import Task
 
 
 class TaskRepository:

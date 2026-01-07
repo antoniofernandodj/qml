@@ -9,8 +9,8 @@ from PySide6.QtCore import (
     Slot,
 )
 
-from model.task import Task
-from repository.task_repository import TaskRepository
+from example1.model.task import Task
+from example1.repository.task_repository import TaskRepository
 
 
 class TaskListModel(QAbstractListModel):

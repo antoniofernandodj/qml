@@ -1,0 +1,4 @@
+module Components
+Card 1.0 Card.qml
+Input 1.0 Input.qml
+CustomButton 1.0 CustomButton.qml
