@@ -9,16 +9,13 @@ from example1.reactive import ref
 
 
 class CounterViewModel(QObject):
-    counter, counterChanged, _counter_name = ref(int, "counter")
-    message, messageChanged, _message_name = ref(str, "message")
+    counter, counterChanged = ref(int, "counter")
+    message, messageChanged = ref(str, "message")
 
     def __init__(self):
         super().__init__()
-
-        self._counter = 0
-        self._message = "Clique no botão!"
-
-        # Conecta reatividade derivada
+        self.counter = 0
+        self.message = "Clique no botão!"
         self.counterChanged.connect(self._update_message)
 
     @Slot()
