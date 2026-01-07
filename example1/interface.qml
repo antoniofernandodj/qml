@@ -35,7 +35,7 @@ ApplicationWindow {
         
         Text {
           // Binding reativo - atualiza automaticamente quando counter muda
-          text: counterVM.counter
+          text: (counterVM) ? counterVM.counter : 0
           font.pixelSize: 48
           font.bold: true
           color: (counterVM && counterVM.counter > 5) ? "#e74c3c" : "#3498db"
@@ -44,7 +44,7 @@ ApplicationWindow {
         
         Text {
           // Binding reativo - atualiza quando message muda
-          text: counterVM.message
+          text: (counterVM) ? counterVM.message : ""
           font.pixelSize: 18
           color: "#7f8c8d"
           Layout.alignment: Qt.AlignHCenter
@@ -58,14 +58,14 @@ ApplicationWindow {
             text: "➖"
             font.pixelSize: 20
             onClicked: {
-              counterVM.decrement()
+              if (counterVM) counterVM.decrement()
             }
           }
           
           Button {
             text: "Reset"
             onClicked: {
-              counterVM.reset()
+              if (counterVM) counterVM.reset()
             }
           }
           
@@ -73,7 +73,7 @@ ApplicationWindow {
             text: "➕"
             font.pixelSize: 20
             onClicked: {
-              counterVM.increment()
+              if (counterVM) counterVM.increment()
             }
           }
         }
